@@ -8,6 +8,7 @@ Ubuntu 20.04
 # Attach external volume as /data
 
 # Install Portainer
+REF: https://www.portainer.io/installation/
 
 ```
 sudo docker volume create portainer_data
