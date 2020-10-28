@@ -1,0 +1,26 @@
+Install On CentOS
+REF: https://www.elastic.co/guide/en/beats/filebeat/current/setup-repositories.html
+
+sudo rpm --import https://packages.elastic.co/GPG-KEY-elasticsearch
+
+# Create File /etc/yum.repos.d/elastic.repo
+[elastic-7.x]
+name=Elastic repository for 7.x packages
+baseurl=https://artifacts.elastic.co/packages/oss-7.x/yum
+gpgcheck=1
+gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch
+enabled=1
+autorefresh=1
+type=rpm-md
+
+sudo yum install filebeat
+
+sudo systemctl enable filebeat
+
+# Modify /etc/filebeat/filebeat.yml
+
+output.logstash:
+  hosts: ["graylog:5044"]
+
+# Enable Modules
+filebeat modules enable system nginx mysql php-fpm
